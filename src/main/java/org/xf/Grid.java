@@ -1,6 +1,6 @@
 package org.xf;
 
-import java.util.BitSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,12 +8,14 @@ import java.util.List;
 public class Grid {
     private final int width;
     private final int height;
+    private List<Integer> colors;
     private List<Hint[]> rowHints;
     private List<Hint[]> colHints;
 
-    public Grid(int width, int height) {
+    Grid(int width, int height) {
         this.width = width;
         this.height = height;
+        colors = new ArrayList<Integer>();
     }
 
     public int getWidth() {
@@ -38,5 +40,18 @@ public class Grid {
 
     public void setColHints(List<Hint[]> colHints) {
         this.colHints = colHints;
+    }
+
+    public int getNbColors() {
+        return colors.size();
+    }
+
+
+    public List<Integer> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<Integer> colors) {
+        this.colors = colors;
     }
 }

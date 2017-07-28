@@ -1,6 +1,9 @@
 package org.xf;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  */
@@ -10,7 +13,7 @@ public class GridLoader {
     private final ArrayList<Hint[]> rows;
     private final ArrayList<Hint[]> cols;
 
-    public GridLoader(int width, int height) {
+    private GridLoader(int width, int height) {
         builded = new Grid(width, height);
         rows = new ArrayList<Hint[]>();
         cols = new ArrayList<Hint[]>();
@@ -54,8 +57,22 @@ public class GridLoader {
             throw new BadGridHintException("Number of columns " + cols.size()
                     + " is not correct for a Grid of Width " + builded.getWidth());
 
+        builded.setColors(collectColors(rows));
         builded.setColHints(cols);
         builded.setRowHints(rows);
         return builded;
+    }
+
+    private List<Integer> collectColors(List<Hint[]> hintList) {
+
+        Set<Integer> colors = new LinkedHashSet<Integer>();
+        for (Hint[] hints : hintList) {
+            for (Hint hint : hints) {
+                colors.add(hint.getColor());
+            }
+        }
+
+        return new ArrayList<Integer>(colors);
+
     }
 }

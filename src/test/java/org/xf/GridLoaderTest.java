@@ -2,8 +2,6 @@ package org.xf;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.xf.GridLoader;
-import org.xf.Hint;
 
 /**
  * @author rcoqueugniot
